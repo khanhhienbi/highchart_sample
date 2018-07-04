@@ -14,29 +14,68 @@ function App() {
 const rootElement = document.getElementById("root");
 ReactDOM.render(<App />, rootElement);
 
-Highcharts.chart("main", {
+Highcharts.chart('container', {
   chart: {
-    type: 'bar'
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
   },
   title: {
-    text: 'Fruit Consumption'
+    text: 'Most Tweeted Consistuent Counts'
   },
-  xAxis: {
-    categories: ['Apples', 'Bananas', 'Oranges']
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
   },
-  yAxis: {
-    title: {
-      text: 'Fruit eaten'
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: true,
+        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+        style: {
+          color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        }
+      }
     }
   },
   series: [{
-    name: 'Jane',
-    data: [1, 0, 4]
-  }, {
-    name: 'John',
-    data: [5, 7, 3]
+    name: 'Companies',
+    colorByPoint: true,
+    data: [{
+      name: 'Deutsche Bank',
+      y: 61.41,
+      sliced: true,
+      selected: true
+    }, {
+      name: 'Adidas',
+      y: 11.84
+    }, {
+      name: 'BMW',
+      y: 10.85
+    }, {
+      name: 'Volkswagen',
+      y: 4.67
+    }, {
+      name: 'Siemens',
+      y: 4.18
+    }, {
+      name: 'Bayer',
+      y: 1.64
+    }, {
+      name: 'Continental',
+      y: 1.6
+    }, {
+      name: 'DAX',
+      y: 1.2
+    }, {
+      name: 'EON',
+      y: 2.61
+    }]
   }]
 });
+
 
 export default class Home extends React.Component<any, any> {
 
